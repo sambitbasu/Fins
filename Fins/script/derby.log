@@ -1,0 +1,20 @@
+----------------------------------------------------------------
+2010-08-05 18:02:40.458 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-012a-436b-4f4f-000002c1b400
+on database directory /win_lin/workarea/eclipse_workspace/Portfolio/data/portfoliodb in READ ONLY mode 
+
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+2010-08-05 18:04:24.886 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 004b0019-012a-436b-4f4f-000002c1b400
+on database directory /home/sambit/workspace/Portfolio/data/portfoliodb  
+
+Database Class Loader started - derby.database.classpath=''
+
+2010-08-06 13:17:21.470 GMT:
+Shutting down instance 004b0019-012a-436b-4f4f-000002c1b400
+----------------------------------------------------------------
+
+2010-08-06 13:17:21.486 GMT:
+Shutting down instance a816c00e-012a-436b-4f4f-000002c1b400
+----------------------------------------------------------------

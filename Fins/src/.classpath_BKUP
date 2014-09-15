@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/sambit/workarea/project_personal/auge/trunk/com.fh.auge.yahoo/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/home/sambit/workarea/project_personal/auge/trunk/com.fh.auge.yahoo/lib/commons-csv-20060924.jar"/>
+	<classpathentry kind="lib" path="/home/sambit/workarea/project_personal/auge/trunk/com.fh.auge.yahoo/lib/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

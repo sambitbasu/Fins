@@ -1,0 +1,175 @@
+<project name="Fins" default="compile" basedir=".">
+	<description>
+		Build file for Fins application
+	</description>
+  <!-- set global properties for this build -->
+  <property name="build.compiler" value="javac1.5" />
+  <property name="user.name" value="basus.com" />
+  <property name="name" value="Portfolio" />
+  <property file="env.properties" />
+  <property name="basedir" location="."/>
+  <property name="src.dir" location="${basedir}/src"/>
+  <property name="thirdparty.src.dir" location="${src.dir}/thirdparty"/>
+  <property name="conf.dir" location="${basedir}/conf"/>
+  <property name="resource.dir" location="${basedir}/resource"/>
+  <property name="lib.dir" location="${basedir}/lib"/>
+  <property name="doc.dir" location="${basedir}/doc"/>
+  <property name="build.dir" location="${basedir}/build"/>
+  <property name="dist.dir"  location="${basedir}/dist"/>
+  <property name="bin.dir" location="${basedir}/bin"/>
+  <property name="versionfile" value="build.version" />
+  <property name="jarfile" value="portfolio.jar"/>
+  <property name="manifest.file" location="${basedir}/manifest.mf"/>
+
+  <path id="lib-classpath">
+  	<fileset dir="${lib.dir}">
+  		<include name="*.jar" />
+  	</fileset>
+  </path>
+
+  <target name="init" description="Initializes build environment">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <!-- create build version -->
+  <target name="version" description="creates build version">
+  	<!-- copy version file to build area -->
+	  <copy file="${basedir}/${versionfile}" todir="${build.dir}"/>
+  	<tstamp />
+	<replace file="${build.dir}/${versionfile}" token="@TODAY@" value="${TODAY}"/>
+	<replace file="${build.dir}/${versionfile}" token="@DSTAMP@" value="${DSTAMP}"/>
+	<replace file="${build.dir}/${versionfile}" token="@TSTAMP@" value="${TSTAMP}"/>
+  </target>
+  
+  <target name="compile" depends="init" 
+        description="compile the source " >
+    <!-- Compile the java code from ${src.dir} into ${build.dir} -->
+    <echo message="Start compile all java codes " />
+    <javac debug="true" compiler="modern" debuglevel="lines,vars,source"  destdir="${build.dir}">
+		<src path="${src.dir}" />
+    	<classpath refid="lib-classpath" />
+		<!-- Uncomment to see warnings
+		<compilerarg value="-Xlint:unchecked" />
+		<compilerarg value="-Xlint:deprecation" />
+		-->
+    	<include name="**/*.java" />
+	</javac>
+  </target>
+
+  <target name="build" depends="compile" description="Builds application for local use">
+  	<!-- copy properties files -->
+  	<copy todir="${build.dir}">
+  		<fileset dir="${conf.dir}">
+  	    	<include name="**/*.properties"/>
+  	      </fileset>
+  	</copy>
+  	  	
+  	<!-- copy image files -->
+  	<copy todir="${build.dir}">
+  		<fileset dir="${resource.dir}/images"/>
+  	</copy>
+  		
+  	<!-- copy fonts files -->
+  	<copy todir="${build.dir}">
+  		<fileset dir="${resource.dir}">
+  	    </fileset>
+  	</copy>
+  </target>	
+	
+  <target name="dist" depends="clean,build"
+        description="generate the distribution common to web and app" >
+    <!-- Create the distribution directory -->
+	<mkdir dir="${dist.dir}/log" />
+    <mkdir dir="${dist.dir}/lib"/>
+	<mkdir dir="${dist.dir}/resource"/>
+  	<mkdir dir="${dist.dir}/images"/>
+
+    <!-- Copy application classes -->
+  	<copy todir="${dist.dir}">
+      <fileset dir="${build.dir}">
+        <include name="**/*.class"/>
+      	<exclude name="com/basus/portfolio/test/*.class" />
+      </fileset>
+    </copy>
+  </target>
+  	
+  <!-- Application jar -->
+  <target name="app" depends="clean,dist" description="makes package for desktop deployment">
+    <!-- Put everything in ${build.dir} into the MyProject-${DSTAMP}.jar file -->
+  	<!-- Copy some docs -->
+  	<copy todir="${dist.dir}">
+  		<fileset dir="${doc.dir}">
+	  		<include name="README"/>
+  			<include name="OPEN_ISSUES"/>
+      	</fileset>
+  		<fileset dir="${basedir}">
+	  		<include name="LICENSE"/>
+  			<include name="THIRDPARTY_LICENSE"/>
+  			<include name="FAQ"/>
+      	</fileset>
+  	</copy>
+  	<!-- Populate dist/lib -->
+  	<copy todir="${dist.dir}/lib">
+  		<fileset dir="${lib.dir}">
+	  		<include name="**/*.jar"/>
+      	</fileset>
+  	</copy>
+  	<!-- Populate dist/conf -->
+  	<copy todir="${dist.dir}/conf">
+  		<fileset dir="${conf.dir}">
+	  		<include name="**/*.properties"/>
+      	</fileset>
+  	</copy>
+  	<!-- Populate dist/resource -->
+  	<copy todir="${dist.dir}/resource">
+  		<fileset dir="${resource.dir}/">
+      	</fileset>
+  	</copy>
+  	<!-- Populate dist/images -->
+  	<copy todir="${dist.dir}/images">
+  		<fileset dir="${resource.dir}/images">
+	  		<include name="**/*.png"/>
+            <include name="**/*.ico"/>
+      	</fileset>
+  	</copy>
+    <!-- Copy the executables -->
+    <copy todir="${dist.dir}">
+        <fileset file="${bin.dir}/portfolio.sh" />
+        <fileset file="${bin.dir}/portfolio.bat" />
+    </copy>
+    <!-- no need to create the jar -->
+    <!--
+    <jar jarfile="${dist.dir}/${jarfile}" 
+	    basedir="${build.dir}" 
+        includes="org/**"
+	    manifest="${manifest.file}" />
+    -->
+  </target>
+    
+  <!-- create javadoc the java code from ${src.dir} into ${doc.dir} -->
+  <!--
+  <target name="doc" description="make javadoc" >
+    <javadoc packagenames="org.bongolipi.btrans.*" sourcepath="${src.dir}" destdir="${doc.dir}" classpath="${build.dir}"/>
+  </target> 
+  -->
+	
+  <target name="clean"
+        description="clean up" >
+    <!-- Delete the ${build.dir} and ${dist.dir} directory trees -->
+    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
+  </target>
+
+  <target name="run" description="Run Editor" depends="compile">
+    <!-- Run the editor -->
+    <java classname="com.basus.portfolio.Portfolio" fork="true" >
+         <!--<arg value=""/>-->
+         <classpath>
+           <pathelement path="${build.dir}"/>
+         </classpath>
+       </java>
+  </target>
+</project>
