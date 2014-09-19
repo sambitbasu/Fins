@@ -14,6 +14,8 @@ public class WorkQueue<E> extends LinkedBlockingQueue<Runnable> {
 	private static final WorkQueue<?> historicQuoteQueue = new WorkQueue<Runnable>();
 	private static final WorkQueue<?> status1Queue = new WorkQueue<Runnable>();
 	private static final WorkQueue<?> status2Queue = new WorkQueue<Runnable>();
+	private static final WorkQueue<?> task1Queue = new WorkQueue<Runnable>();
+	private static final WorkQueue<?> task2Queue = new WorkQueue<Runnable>();
 	
 	public static WorkQueue<?> getCurrentQuoteQueue() {
 		return currentQuoteQueue;
@@ -29,6 +31,14 @@ public class WorkQueue<E> extends LinkedBlockingQueue<Runnable> {
 	
 	public static WorkQueue<?> getStatus2Queue() {
 		return status2Queue;
+	}
+	
+	public static WorkQueue<?> getTask1Queue() {
+		return task1Queue;
+	}
+	
+	public static WorkQueue<?> getTask2Queue() {
+		return task2Queue;
 	}
 	
 	public WorkQueue() {

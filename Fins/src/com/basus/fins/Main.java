@@ -71,6 +71,8 @@ public class Main {
     	Worker indexWorker = new Worker((WorkQueue<Runnable>)WorkQueue.getHistoricQuoteQueue());
     	Worker status1Worker = new Worker((WorkQueue<Runnable>)WorkQueue.getStatus1Queue());
     	Worker status2Worker = new Worker((WorkQueue<Runnable>)WorkQueue.getStatus2Queue());
+    	Worker task1Worker = new Worker((WorkQueue<Runnable>)WorkQueue.getTask1Queue());
+    	Worker task2Worker = new Worker((WorkQueue<Runnable>)WorkQueue.getTask2Queue());
     }
     
 }

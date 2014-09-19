@@ -3,13 +3,13 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="SWT_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/sambit/workspace/Fins/lib/commons-codec-1.3.jar"/>
-	<classpathentry kind="lib" path="/win_lin/workarea/workspace/Fins/lib/commons-httpclient-3.0.1.jar"/>
-	<classpathentry kind="lib" path="/home/sambit/workspace/Fins/lib/derby.jar"/>
-	<classpathentry kind="lib" path="/win_lin/workarea/workspace/Fins/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/home/sambit/workarea/git/Fins/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/home/sambit/workarea/git/Fins/lib/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/sambit/workarea/git/Fins/lib/derby.jar"/>
+	<classpathentry kind="lib" path="/home/sambit/workarea/git/Fins/lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="conf"/>
 	<classpathentry kind="con" path="DERBY_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/sambit/workspace/Fins/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/sambit/workarea/git/Fins/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/swingx-core-1.6.2.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>

@@ -237,6 +237,23 @@ public class CSVFile {
     	return new String(content);
     }
     
+    public String toString() {
+    	if (null == aCSV) {
+    		return "";
+    	}
+    	
+    	StringBuilder out = new StringBuilder("");
+    	
+    	for (int row = 0; row < aCSV.length; row++) {
+    		for (int col = 0; col < aCSV[row].length; col++) {
+				 out.append(aCSV[row][col]).append(delim);
+    		}
+    		out.append(System.lineSeparator());
+    	}
+    	
+    	return out.toString();
+    }
+    
     /**
      * Represents a line of the file
      */

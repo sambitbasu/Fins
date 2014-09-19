@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-2014-09-15 18:09:54.487 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.6.1.0 - (938214): instance a816c00e-0148-7a81-b56c-000002600c68 
+2014-09-19 17:04:07.772 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.6.1.0 - (938214): instance a816c00e-0148-8ede-eb8a-00000264d960 
 on database directory /home/sambit/Dropbox/Private/portfolio/data/portfoliodb   with class loader sun.misc.Launcher$AppClassLoader@1d16e93
 
 Database Class Loader started - derby.database.classpath=''

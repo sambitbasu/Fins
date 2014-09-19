@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 //import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -52,6 +54,8 @@ import org.apache.log4j.Logger;
 
 import com.basus.fins.account.Account;
 import com.basus.fins.account.AccountData;
+import com.basus.fins.analytics.retirement.HistoricWhatIf;
+import com.basus.fins.analytics.retirement.RetirementInput;
 import com.basus.fins.data.Data;
 import com.basus.fins.data.QuoteUpdateTask;
 import com.basus.fins.performance.PerformanceAccount;
@@ -93,6 +97,8 @@ public class PortfolioUI extends JFrame implements ActionListener, MouseListener
 	private Action copyAccountAction;
 	private Action deleteAccountAction;
 	private Action datedPerformanceAction;
+	private Action retirementAnalysisAction;
+	private RetirementAnalysisUI retirementUI = null;
 	
 	private QuoteUpdateTask task;
 	private BackupAction backupAction;
@@ -216,6 +222,10 @@ public class PortfolioUI extends JFrame implements ActionListener, MouseListener
 		if (menuTools == null) {
 			menuTools = new JMenu();
 			menuTools.setText("Tools");
+			
+			JMenuItem miRetireAnalytics = new JMenuItem("Retirement Analysis ...");
+			miRetireAnalytics.setAction(retirementAnalysisAction = new RetirementAnalysisAction("Retirement Analysis ..."));
+			menuTools.add(miRetireAnalytics);
 			
 			JMenuItem miDatedPerf = new JMenuItem("Perfromance between ...");
 			miDatedPerf.setAction(datedPerformanceAction = new DatedPerformanceAction("Performance between ..."));
@@ -677,6 +687,21 @@ public class PortfolioUI extends JFrame implements ActionListener, MouseListener
 		perfInput.setVisible(true);
 	}
 	
+	private void doRetirementAnalysis() {
+		if (null == retirementUI) {
+			RetirementInput retirementInput = new RetirementInput();	// default values
+			retirementUI = new RetirementAnalysisUI(this, retirementInput);
+		}
+		else {
+			retirementUI.setVisible(true);
+		}
+		/*
+		PerformanceInputUI perfInput = new PerformanceInputUI(this, datedPerfInput);
+		perfInput.addActionListener(this);
+		perfInput.setVisible(true);
+		*/
+	}
+	
 	private File getSelectedDirectory(String title, int mode) {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle(title);
@@ -929,6 +954,19 @@ public class PortfolioUI extends JFrame implements ActionListener, MouseListener
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			doDatedPerformance();
+		}
+		
+	}	
+	
+	class RetirementAnalysisAction extends AbstractAction {
+		RetirementAnalysisAction(String name) {
+			super(name);
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			doRetirementAnalysis();
 		}
 		
 	}	

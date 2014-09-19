@@ -19,7 +19,7 @@ public class Worker extends ThreadPoolExecutor {
 	private static Logger log = Logger.getLogger(Worker.class);
 
 	public Worker(WorkQueue<Runnable> queue) {
-		super(5, 10, 1200, TimeUnit.MILLISECONDS, queue);
+		super(5, 50, 1200, TimeUnit.MILLISECONDS, queue);
 		this.prestartCoreThread();
 	}
 
